@@ -1,0 +1,8 @@
+{
+  "name": "meteor-build-app-from-packages",
+  "private": true,
+  "dependencies": {
+    "shower-core": "^1.2.0",
+    "shower-ribbon": "^2.0.0"
+  }
+}
