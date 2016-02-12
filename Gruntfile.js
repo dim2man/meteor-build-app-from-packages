@@ -226,7 +226,8 @@ module.exports = function (grunt) {
           cwd: 'bower_components/shower-ribbon',
           dest: '<%= config.dist %>',
           src: [
-            'fonts/*'
+            'fonts/*',
+            'images/*'
           ]
         }]
       },

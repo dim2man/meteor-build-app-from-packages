@@ -1,2 +1,3 @@
-# meteor-build-app-from-packages
-The code and presentation for the Meteor: Build Application from Packages 
+# Meteor: Build App from Packages
+
+This repo contains sources for presentation made in Shower 
