@@ -1,38 +1,183 @@
-<!DOCTYPE html> <html> <head> <meta charset=utf-8> <title>Meteor: Как сделать приложение из пакетов</title> <meta name=author content="Dmitry Manzhasov"> <meta name=description content=""> <meta name=viewport content="width=device-width"> <link rel="shortcut icon" href=/favicon.ico> <link rel=stylesheet href=css/vendor.css>  <body class="shower list"> <header class=caption> <h1>Shower Presentation Engine</h1> <p>Yours Truly, Famous Inc.</p> </header> <section class=slide id=cover> <h2>Shower Presentation Engine</h2> <p>Brought to you by <a href=http://pepelsbey.net>Vadim Makeev</a></p> <img src=images/cover.jpg alt="" class=cover> <!--
-        To apply styles to the certain slides
-        set slide ID to get needed elements
-        --> <style>#cover h2 {
-          margin:30px 0 0;
-          color:#FFF;
+<!DOCTYPE html> <html> <head> <meta charset=utf-8> <title>Meteor: Как собрать приложение из пакетов</title> <meta name=author content="Dmitry Manzhasov"> <meta name=description content=""> <meta name=viewport content="width=device-width"> <link rel="shortcut icon" href=/favicon.ico> <link rel=stylesheet href=css/vendor.css>  <body class="shower list"> <header class=caption> <h1>Meteor: Как собрать приложение из пакетов</h1> <p>Дмитрий Манжасов, Мера</p> </header> <section class=slide id=cover> <h2>Meteor: Как собрать приложение из пакетов</h2> <p>Дмитрий Манжасов, Мера</p> <img src=images/packages.gif width=100% alt="" class=cover> <style>#cover h2 {
+          margin:0;
           text-align:center;
           font-size:70px;
         }
         #cover p {
           margin:10px 0 0;
           text-align:center;
-          color:#FFF;
           font-style:italic;
           font-size:20px;
         }
-        #cover p a {
-          color:#FFF;
-        }</style> </section> <section class=slide> <h2>Shower key features</h2> <ol> <li>Built on HTML, CSS and vanilla JavaScript</li> <li>Works in all modern browsers</li> <li>Themes are separated from engine</li> <li>Modular and extensible</li> <li>Fully keyboard accessible</li> <li>Printable to PDF</li> </ol> <p class=note>Shower ['ʃəuə] noun. A person or thing that shows.</p> </section> <section class=slide> <h2>Plain text on your slides</h2> <p>Lorem ipsum dolor sit amet, consectetur <a href=#4>adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p> </section> <section class=slide> <h2>Two columns if you like</h2> <p class=double>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p> </section> <section class=slide> <h2>All kind of lists</h2> <ol> <li>Simple lists are marked with bullets</li> <li>Ordered lists begin with a number</li> <li>You can even nest lists one inside another <ul> <li>Or mix their types</li> <li>But do not go too far</li> <li>Otherwise audience will be bored</li> </ul> </li> <li>Look, seven rows exactly!</li> </ol> </section> <section class=slide> <h2>Serious citations</h2> <figure> <blockquote> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p> </blockquote> <figcaption>Marcus Tullius Cicero</figcaption> </figure> </section> <section class=slide> <h2>Code samples</h2> <pre>
+        #cover img {
+          margin-top: 20%;
+        }</style> </section> <section id=cap class=slide> <img src=images/captain.jpg width=100% alt="https://habrahabr.ru/company/yandex/blog/265569/" class=cover> <figure> <blockquote> <p>Чтобы собрать приложение из отдельных пакетов (packages), надо сначала разбить его на отдельные пакеты.</p> </blockquote> <figcaption></figcaption> </figure> <style>#cap img {
+          transform: none;
+          top: initial;
+          left: 0;
+          bottom: 0;
+        }</style> </section> <section class=slide> <h2 class="shout shrink">Но зачем?</h2> </section> <section class=slide> <h2>Если можно так</h2> <pre>
+        <code>meteor create simple-todos</code>
+      </pre> <p>И весь код разместить в 3-х файлах</p> <pre>
+        <code>simple-todos.js   <mark class=comment># JavaScript loaded on both client &amp; server</mark></code>
+        <code>simple-todos.html <mark class=comment># HTML file that defines view templates</mark></code>
+        <code>simple-todos.css  <mark class=comment># CSS file to define your app's styles</mark></code>
+      </pre> <p class=note><a href=https://www.meteor.com/tutorials/blaze/creating-an-app>https://www.meteor.com/tutorials/blaze/creating-an-app</a></p> </section> <section class=slide> <h2>Или разбить по каталогам так</h2> <pre>
+        <code>client/           <mark class=comment># everything for client-side only</mark></code>
+        <code>  compatibility/  <mark class=comment># dinosaurs</mark></code>
+        <code>  css/            <mark class=comment># some styles</mark></code>
+        <code>  lib/            <mark class=comment># client libraries</mark></code>
+        <code>  view/           <mark class=comment># template HTML &amp; JavaScript</mark></code>
+        <code>    layout/       <mark class=comment># page layouts</mark></code>
+        <code>    template/     <mark class=comment># page templates</mark></code>
+        <code>      page1/      <mark class=comment># page1 HTML template and JavaScript</mark></code>
+        <code>public/           <mark class=comment># static resources:</mark></code>
+        <code>  fonts/          <mark class=comment># local fonts</mark></code>
+        <code>  img/            <mark class=comment># and images</mark></code>
+      </pre> </section> <section class=slide> <h2>И вот так</h2> <pre>
+        <code>common/          <mark class=comment># for the both client and server</mark></code>
+        <code>  controller/    <mark class=comment># Iron Router controllers</mark></code>
+        <code>  lib/           <mark class=comment># common libraries</mark></code>
+        <code>  collections.js <mark class=comment># some collections</mark></code>
+        <code>  routes.js      <mark class=comment># Iron Router routes</mark></code>
+        <code>server/          <mark class=comment># server-side code</mark></code>
+        <code>  methods.js     <mark class=comment># remote functions</mark></code>
+        <code>  publish.js     <mark class=comment># collection publishing rules</mark></code>
+        <code>private/         <mark class=comment># top secret files</mark></code>
+      </pre> </section> <section class=slide> <h2>Очень хорошо! А что дальше?</h2> <p>Внезапно оказывается что надо сделать ещё одно приложение, но которое будет <em>чуть-чуть</em> отличаться от первого.</p> <p class=next>Не проблема! <strong>Copy&amp;Paste</strong> - это орудие настоящих профессионалов!</p> <p class=next>И тут в первом приложении обнаруживается <em>баг</em>, который конечно же легко фиксится.</p> <p class=next>Но оказывается этот баг надо пофиксить и во втором приложении... Неужели опять браться за <strong>орудие</strong>?</p> </section> <section class=slide> <h2>Говорила мне мама...</h2> <p><strong>DRY!</strong></p> </section> <section class=slide> <h2>Зачем разбивать приложение на пакеты</h2> <h3>Плюсы</h3> <ol> <li>Переиспользование кода</li> <li>Лучшее управление зависимостями</li> <li>Лучшее управление порядком загрузки кода</li> <li>Изоляция кода</li> <li>Для пакетов легко писать юнит-тесты</li> </ol> <h3>Минусы</h3> <ol> <li>Надо создавать дескриптор пакета package.js</li> <li>Можно добавить новый файл и забыть прописать его в package.js и он не будет загружен</li> </ol> <!--<p class="note"></p>--> </section> <section class=slide> <h2>Пакетная система Meteor</h2> <ol> <li>Изоморфная</li> <li>Может содержать плагины расширяющие build process</li> <li>Весь Meteor это набор packages</li> </ol> <!--<p class="note"></p>--> </section> <section class=slide> <h2>Создание нового пакета</h2> <ul> <li>meteor create --package username:packagename</li> <li>Будет создан каталог и дескриптор пакета package.js</li> <li>Windows: имя каталога не может содержать двоеточие</li> </ul> </section> <section class=slide> <h2>Структура package.js: Package.describe</h2> <pre>
+        <code><mark class=comment>/* Information about this package */</mark></code>
+        <code>Package.describe({</code>
+        <code>  <mark class=comment>// Short two-sentence summary.</mark></code>
+        <code>  summary: "What this does",</code>
+        <code>  <mark class=comment>// Version number.</mark></code>
+        <code>  version: "1.0.0",</code>
+        <code>  <mark class=comment>// Optional.  Default is package directory name.</mark></code>
+        <code>  name: "username:package-name",</code>
+        <code>  <mark class=comment>// Optional github URL to your source repository.</mark></code>
+        <code>  git: "https://github.com/something/something.git",</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Публикация пакета</h2> <ul> <li>meteor publish</li> </ul> <h3>Ограничения</h3> <ul> <li>Версия обязательна</li> <li>username должен совпадать с аккаунтом разработчика Meteor</li> </ul> </section> <section class=slide> <h2>Использование пакета локально</h2> <ul> <li>PACKAGE_DIRS</li> </ul> </section> <!--
+    <section class="slide">
+      <h2>Plain text on your slides</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+    <section class="slide">
+      <h2>Two columns if you like</h2>
+      <p class="double">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+    </section>
+    <section class="slide">
+      <h2>All kind of lists</h2>
+      <ol>
+        <li>Simple lists are marked with bullets</li>
+        <li>Ordered lists begin with a number</li>
+        <li>You can even nest lists one inside another
+          <ul>
+            <li>Or mix their types</li>
+            <li>But do not go too far</li>
+            <li>Otherwise audience will be bored</li>
+          </ul>
+        </li>
+        <li>Look, seven rows exactly!</li>
+      </ol>
+    </section>
+    <section class="slide">
+      <h2>Serious citations</h2>
+      <figure>
+        <blockquote>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+        </blockquote>
+        <figcaption>Marcus Tullius Cicero</figcaption>
+      </figure>
+    </section>
+    <section class="slide">
+      <h2>Code samples</h2>
+      <pre>
         <code>&lt;!DOCTYPE html&gt;</code>
-        <code class=mark>&lt;html lang="en"&gt;</code>
-        <code><mark>&lt;head&gt;</mark> <mark class=comment>&lt;!--Comment--&gt;</mark></code>
+        <code class="mark">&lt;html lang="en"&gt;</code>
+        <code><mark>&lt;head&gt;</mark> <mark class="comment">&lt;!--Comment--&gt;</mark></code>
         <code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-        <code>    &lt;meta charset="<mark class=important>UTF-8</mark>"&gt;</code>
+        <code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
         <code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
         <code><mark>&lt;/head&gt;</mark></code>
-      </pre> </section> <section class=slide> <h2>Even tables</h2> <table> <tr> <th scope=col>Locavore <th>Umami <th>Helvetica <th>Vegan  <tr> <th scope=row>Fingerstache <td>Kale <td>Chips <td>Keytar  <tr> <th scope=row>Sriracha <td>Gluten-free <td>Ennui <td>Keffiyeh  <tr> <th scope=row>Thundercats <td>Jean <td>Shorts <td>Biodiesel  <tr> <th scope=row>Terry <td>Richardson <td>Swag <td>Blog  </table> <p>It’s good to have information organized.</p> </section> <section class=slide id=picture> <h2>Pictures</h2> <img src=images/picture.jpg alt="" class=cover> <style>#picture h2 {
+      </pre>
+    </section>
+    <section class="slide">
+      <h2>Even tables</h2>
+      <table>
+      <tr>
+        <th scope="col">Locavore</th>
+        <th>Umami</th>
+        <th>Helvetica</th>
+        <th>Vegan</th>
+      </tr>
+      <tr>
+        <th scope="row">Fingerstache</th>
+        <td>Kale</td>
+        <td>Chips</td>
+        <td>Keytar</td>
+      </tr>
+      <tr>
+        <th scope="row">Sriracha</th>
+        <td>Gluten-free</td>
+        <td>Ennui</td>
+        <td>Keffiyeh</td>
+      </tr>
+      <tr>
+        <th scope="row">Thundercats</th>
+        <td>Jean</td>
+        <td>Shorts</td>
+        <td>Biodiesel</td>
+      </tr>
+      <tr>
+        <th scope="row">Terry</th>
+        <td>Richardson</td>
+        <td>Swag</td>
+        <td>Blog</td>
+      </tr>
+      </table>
+      <p>It’s good to have information organized.</p>
+    </section>
+    <section class="slide" id="picture">
+      <h2>Pictures</h2>
+      <img src="images/picture.jpg" alt="" class="cover">
+      <style>
+        #picture h2 {
           color:#FFF;
-          }</style> </section> <section class=slide> <h2 class="shout shrink">You can even shout this way</h2> </section> <section class=slide> <h2>Inner navigation</h2> <ol> <li>Lets you reveal list items one by one</li> <li class=next>To keep some key points</li> <li class=next>In secret from audience</li> <li class=next>But it will work only once</li> <li class=next>Nobody wants to see the same joke twice</li> </ol> </section> <section class="slide grid"> <h2>All nicely aligned to grid</h2> </section> <section class=slide id=see-more> <h2 class=shout> <img src=images/logo.svg alt="Shower logo"> <a href=https://github.com/shower/shower>See more on GitHub</a> </h2> <style>#see-more h2 {
+          }
+      </style>
+    </section>
+    <section class="slide">
+      <h2 class="shout shrink">You can even shout this way</h2>
+    </section>
+    <section class="slide">
+      <h2>Inner navigation</h2>
+      <ol>
+        <li>Lets you reveal list items one by one</li>
+        <li class="next">To keep some key points</li>
+        <li class="next">In secret from audience</li>
+        <li class="next">But it will work only once</li>
+        <li class="next">Nobody wants to see the same joke twice</li>
+      </ol>
+    </section>
+    <section class="slide grid">
+      <h2>All nicely aligned to grid</h2>
+    </section>
+    <section class="slide" id="see-more">
+      <h2 class="shout">
+        <img src="images/logo.svg" alt="Shower logo">
+        <a href="https://github.com/shower/shower">See more on GitHub</a>
+      </h2>
+      <style>
+        #see-more h2 {
           font-size:100px
           }
         #see-more img {
           width:0.72em;
           height:0.72em;
-          }</style> </section> <p class=badge> <a href=https://github.com/shower/shower>Fork me on GitHub</a> </p> <!--
+          }
+      </style>
+    </section>
+--> <p class=badge> <a href=https://github.com/dim2man/meteor-build-app-from-packages>Fork me on GitHub</a> </p> <!--
       To hide progress bar from entire presentation
       just remove “progress” element.
       --> <div class=progress></div> <script src=js/vendor.js></script>  
