@@ -1,0 +1,1 @@
+Bundle.Navigation = new ReactiveVar([]);

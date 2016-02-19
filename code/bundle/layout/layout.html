@@ -1,0 +1,36 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no" />
+  <meta name="author" content="Dmitry Manzhasov" />
+  <title>Овощи и фрукты</title>
+</head>
+
+<template name="Layout">
+  <div>
+    <aside>
+      {{> yield region="navigation"}}
+    </aside>
+    <div>
+      <header>{{> yield region="header"}}</header>
+      <main>
+        {{> yield}}
+      </main>
+    </div>
+  </div>
+  <footer>Овощи и фрукты, версия 0.0.1</footer>
+</template>
+
+<template name="Navigation">
+  <img src="packages/bundle_layout/img/default-avatar.jpg">
+  <nav>
+    <ul>
+      {{#each .}}
+        <li>{{> Template.dynamic }}</li>
+      {{/each}}
+    </ul>
+  </nav>
+</template>
+
+<template name="Header">
+  <h1>{{.}}</h1>
+</template>

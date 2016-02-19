@@ -118,30 +118,34 @@
       <p>Внезапно оказывается что надо сделать ещё одно приложение, но которое будет <em>чуть-чуть</em> отличаться от первого.</p>
       <p class="next">Не проблема! <strong>Copy&amp;Paste</strong> - это орудие настоящих профессионалов!</p>
       <p class="next">И тут в первом приложении обнаруживается <em>баг</em>, который конечно же легко фиксится.</p>
-      <p class="next">Но оказывается этот баг надо пофиксить и во втором приложении... Неужели опять браться за <strong>орудие</strong>?</p>
+      <p class="next">Но оказывается этот <em>баг</em> надо пофиксить и во втором приложении... Неужели опять браться за <strong>орудие</strong>?</p>
     </section>
 
     <section class="slide">
-      <h2>Говорила мне мама...</h2>
-      <p><strong>DRY!</strong></p>
+      <h2>Говорила мне мама</h2>
+      <p style="text-align:center"><strong><span style="font-size:3em">D</span>on't <span style="font-size:3em">R</span>epeat <span style="font-size:3em">Y</span>ourself</strong></p>
+      <p>Всё-таки надо было разбить приложение на модули.</p>
+      <p>А что в Meteor является модулем?</p>
+      <p style="text-align:center; font-size: 2em;" class="next">Конечно же это package!</p>
     </section>
 
     <section class="slide">
       <h2>Зачем разбивать приложение на пакеты</h2>
-      <h3>Плюсы</h3>
+      <p><strong>Плюсы</strong></p>
       <ol>
-        <li>Переиспользование кода</li>
-        <li>Лучшее управление зависимостями</li>
-        <li>Лучшее управление порядком загрузки кода</li>
-        <li>Изоляция кода</li>
-        <li>Для пакетов легко писать юнит-тесты</li>
+        <li>Пакет можно использовать в нескольких приложениях</li>
+        <li class="next">Если не хочется использовать магию имён client, server, public, private...</li>
+        <li class="next">Лучше управление зависимостями</li>
+        <li class="next">Изоляция кода</li>
+        <li class="next">Для пакетов легко писать юнит-тесты</li>
       </ol>
-      <h3>Минусы</h3>
-      <ol>
-        <li>Надо создавать дескриптор пакета package.js</li>
-        <li>Можно добавить новый файл и забыть прописать его в package.js и он не будет загружен</li>
-      </ol>
-      <!--<p class="note"></p>-->
+      <div class="next">
+        <p><strong>Минусы</strong></p>
+        <ol>
+          <li>Надо создавать дескриптор пакета package.js</li>
+          <li>Можно забыть прописать новый файл в package.js и он не будет загружен</li>
+        </ol>
+      </div>
     </section>
 
     <section class="slide">
@@ -158,26 +162,44 @@
       <h2>Создание нового пакета</h2>
       <ul>
         <li>meteor create --package username:packagename</li>
-        <li>Будет создан каталог и дескриптор пакета package.js</li>
-        <li>Windows: имя каталога не может содержать двоеточие</li>
+        <li>Будет создан каталог packagename и дескриптор пакета package.js</li>
+        <li>username должен совпадать с вашим аккаунтом разработчика на <a href="https://www.meteor.com/">https://www.meteor.com/</a> если вы планируете публиковать пакет в репозиторий <a href="https://atmospherejs.com/">https://atmospherejs.com/</a></li>
+        <li>Если нет - то можно выбрать любое имя</li>
       </ul>
     </section>
 
     <section class="slide">
       <h2>Структура package.js: Package.describe</h2>
       <pre>
-        <code><mark class="comment">/* Information about this package */</mark></code>
+        <code><mark class="comment">// All properties are optional</mark></code>
         <code>Package.describe({</code>
-        <code>  <mark class="comment">// Short two-sentence summary.</mark></code>
+        <code>  <mark class="comment">// Default is package directory name.</mark></code>
+        <code>  name: "bundle:namespace",</code>
+        <code>  version: "0.0.1",</code>
         <code>  summary: "What this does",</code>
-        <code>  <mark class="comment">// Version number.</mark></code>
-        <code>  version: "1.0.0",</code>
-        <code>  <mark class="comment">// Optional.  Default is package directory name.</mark></code>
-        <code>  name: "username:package-name",</code>
-        <code>  <mark class="comment">// Optional github URL to your source repository.</mark></code>
+        <code>  <mark class="comment">// Github URL to your source repository.</mark></code>
         <code>  git: "https://github.com/something/something.git",</code>
+        <code>  <mark class="comment">// Package documentation</mark></code>
+        <code>  documentation: 'README.md'</code>
         <code>});</code>
       </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Структура package.js: Package.onUse</h2>
+      <pre>
+        <code><mark class="comment">// This defines your actual package</mark></code>
+        <code>Package.onUse(function(api) {</code>
+        <code>  <mark class="comment">// Use core Meteor packages from the release specified</mark></code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  <mark class="comment">// Use core Meteor packages from the release specified</mark></code>
+        <code>  api.use('iron:router@1.0.12');</code>
+        <code>});</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Структура package.js: Package.onTest</h2>
     </section>
 
     <section class="slide">
@@ -193,11 +215,55 @@
     </section>
 
     <section class="slide">
-      <h2>Использование пакета локально</h2>
+      <h2>Использование пакетов локально</h2>
       <ul>
         <li>PACKAGE_DIRS</li>
       </ul>
     </section>
+
+    <section class="slide">
+      <h2>Пакет пакетов</h2>
+      <ul>
+        <li>группировка</li>
+        <li>управление версиями зависимостей</li>
+        <li>i18n-бандлы</li>
+      </ul>
+      <p class="note"><a href="https://github.com/meteor/meteor/blob/devel/packages/meteor-platform/package.js">https://github.com/meteor/meteor/blob/devel/packages/meteor-platform/package.js</a></p>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет namespace</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет collections</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет layout</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет page</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет приложения</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Юнит тесты: tinytest</h2>
+      <p class="note"><a href="https://github.com/meteor/meteor/tree/devel/packages/tinytest">https://github.com/meteor/meteor/tree/devel/packages/tinytest</a>
+    </section>
+
+    <section class="slide">
+      <h2>Tinytest.add</h2>
+    </section>
+
+    <section class="slide">
+      <h2>Tinytest.addAsync</h2>
+    </section>
+
 <!--
     <section class="slide">
       <h2>Plain text on your slides</h2>

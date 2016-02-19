@@ -1,0 +1,12 @@
+<template name="Fruits">
+  <ul class="list">
+    <li><input value="" placeholder="Добавьте фрукт"><span class="icon-plus"></span></li>
+    {{#each .}}
+    <li>{{name}}<span class="icon-remove"></span></li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="NavFruits">
+<a href="{{pathFor 'fruits'}}" class="icon-apple {{isActiveRoute regex='fruits'}}">Фрукты</a>
+</template>

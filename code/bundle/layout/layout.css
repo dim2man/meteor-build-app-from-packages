@@ -1,0 +1,21 @@
+* {padding: 0; margin: 0; outline: none;}
+body {background-color: #EEE; color: #222; font-size:14px;font-family: 'Open Sans', sans-serif;}
+img {display: block; border: none;}
+a {text-decoration: none;}
+ul {list-style: none outside none;}
+h1, h2, h3, h4 {font-weight: normal;}
+h1 {font-size: 24px;}
+
+aside {height: 100%; min-height: 100vh; background-color: #666; colorwidth: 300px; position: absolute; top: 0; left: 0;}
+nav li {position: relative;}
+nav a {display: block; color: #EEE; font-size: 1.2em; padding: 20px 10px 20px 60px;}
+nav a:hover, nav a.active {background: #999; color: #FFF;}
+nav a:before {position: absolute; left: 15px; top: 13px; font-size: 30px;}
+aside + div {margin-left: 300px;}
+main {padding: 20px;}
+header {background-color: #FFF; color: #000; padding: 20px;}
+footer {box-sizing: border-box; padding: 5px; font-size: 0.8em; text-align: right; position: fixed; width: 100%; bottom: 0;}
+
+.list li {font-size: 1.2em; width: 100%; box-sizing: border-box; padding: 10px 30px 0 10px; overflow: hidden; text-overflow: elliplis; position: relative;}
+.list input {width: 100%; box-sizing: border-box; border: none; padding: 10px; border-radius: 2px;}
+.list span {position: absolute; right: 0; cursor: pointer;}
