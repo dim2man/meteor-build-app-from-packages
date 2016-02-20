@@ -31,3 +31,4 @@ grunt
 
 ## Sample code
 
+Located in the [code folder](code)
