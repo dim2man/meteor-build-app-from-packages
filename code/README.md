@@ -11,7 +11,7 @@ cd myapp
 
 ```
 cd myapp
-../run-app.cmd
+..\run-app.cmd
 ```
 
 ## How to run tests for all packages 
@@ -27,5 +27,5 @@ cd bundle
 
 ```
 cd bundle
-../test-all.cmd
+..\test-all.cmd
 ```
