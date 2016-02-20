@@ -1,8 +1,8 @@
 <template name="Fruits">
   <ul class="list">
-    <li><input value="" placeholder="Добавьте фрукт"><span class="icon-plus"></span></li>
+    <li><span class="icon-plus"></span><input value="" placeholder="Добавьте фрукт"></li>
     {{#each .}}
-    <li>{{name}}<span class="icon-remove"></span></li>
+    <li><span class="icon-remove"></span>{{name}}&#8203;</li>
     {{/each}}
   </ul>
 </template>

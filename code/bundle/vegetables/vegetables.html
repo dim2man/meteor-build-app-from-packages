@@ -1,4 +1,10 @@
 <template name="Vegetables">
+  <ul class="list">
+    <li><span class="icon-plus"></span><input value="" placeholder="Добавьте овощ"></li>
+    {{#each .}}
+    <li><span class="icon-remove"></span>{{name}}&#8203;</li>
+    {{/each}}
+  </ul>
 </template>
 
 <template name="NavVegetables">
