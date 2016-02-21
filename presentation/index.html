@@ -93,8 +93,7 @@
         <code>    template/     <mark class="comment"># page templates</mark></code>
         <code>      page1/      <mark class="comment"># page1 HTML template and JavaScript</mark></code>
         <code>public/           <mark class="comment"># static resources:</mark></code>
-        <code>  fonts/          <mark class="comment"># local fonts</mark></code>
-        <code>  img/            <mark class="comment"># and images</mark></code>
+        <code>  assets/          <mark class="comment"># local fonts and images</mark></code>
       </pre>
     </section>
 
@@ -122,11 +121,7 @@
     </section>
 
     <section class="slide">
-      <h2>Говорила мне мама</h2>
-      <p style="text-align:center"><strong><span style="font-size:3em">D</span>on't <span style="font-size:3em">R</span>epeat <span style="font-size:3em">Y</span>ourself</strong></p>
-      <p>Всё-таки надо было разбить приложение на модули.</p>
-      <p>А что в Meteor является модулем?</p>
-      <p style="text-align:center; font-size: 2em;" class="next">Конечно же это package!</p>
+      <h2 class="shout shrink">DRY</h2>
     </section>
 
     <section class="slide">
@@ -134,18 +129,16 @@
       <p><strong>Плюсы</strong></p>
       <ol>
         <li>Пакет можно использовать в нескольких приложениях</li>
-        <li class="next">Если не хочется использовать магию имён client, server, public, private...</li>
-        <li class="next">Лучше управление зависимостями</li>
-        <li class="next">Изоляция кода</li>
-        <li class="next">Для пакетов легко писать юнит-тесты</li>
+        <li>Если не хочется использовать магию имён client, server, public, private и т.д.</li>
+        <li>Лучше управление зависимостями</li>
+        <li>Изоляция кода</li>
+        <li>Для пакетов легко писать юнит-тесты</li>
       </ol>
-      <div class="next">
-        <p><strong>Минусы</strong></p>
-        <ol>
-          <li>Надо создавать дескриптор пакета package.js</li>
-          <li>Можно забыть прописать новый файл в package.js и он не будет загружен</li>
-        </ol>
-      </div>
+      <p><strong>Минусы</strong></p>
+      <ol>
+        <li>Надо создавать дескриптор пакета package.js</li>
+        <li>Можно забыть прописать новый файл в package.js и он не будет загружен</li>
+      </ol>
     </section>
 
     <section class="slide">
@@ -153,23 +146,30 @@
       <ol>
         <li>Изоморфная</li>
         <li>Может содержать плагины расширяющие build process</li>
-        <li>Весь Meteor это набор packages</li>
+        <li>Meteor это набор packages</li>
       </ol>
-      <!--<p class="note"></p>-->
+    </section>
+
+    <section class="slide">
+      <a href="https://github.com/meteor/meteor/blob/devel/packages/">https://github.com/meteor/meteor/blob/devel/packages/</a>
+      <iframe style="width: 100%; height: 90%" src="https://github.com/meteor/meteor/blob/devel/packages/"></iframe>
     </section>
 
     <section class="slide">
       <h2>Создание нового пакета</h2>
-      <ul>
-        <li>meteor create --package username:packagename</li>
-        <li>Будет создан каталог packagename и дескриптор пакета package.js</li>
-        <li>username должен совпадать с вашим аккаунтом разработчика на <a href="https://www.meteor.com/">https://www.meteor.com/</a> если вы планируете публиковать пакет в репозиторий <a href="https://atmospherejs.com/">https://atmospherejs.com/</a></li>
-        <li>Если нет - то можно выбрать любое имя</li>
-      </ul>
+      <pre><code>meteor create --package username:packagename</code></pre>
+      <pre>
+        <code>packagename/</code>
+        <code>  package.js</code>
+        <code>  packagename.js</code>
+        <code>  packagename-tests.js</code>
+        <code>  README.md</code>
+      </pre>
+      <p><strong>username</strong> должен совпадать с вашим аккаунтом разработчика на <a href="https://www.meteor.com/">https://www.meteor.com/</a> если вы планируете публиковать пакет в репозиторий <a href="https://atmospherejs.com/">https://atmospherejs.com/</a>. Если нет - то можно выбрать любое имя</p>
     </section>
 
     <section class="slide">
-      <h2>Структура package.js: Package.describe</h2>
+      <h2>package.js: Package.describe</h2>
       <pre>
         <code><mark class="comment">// All properties are optional</mark></code>
         <code>Package.describe({</code>
@@ -186,32 +186,69 @@
     </section>
 
     <section class="slide">
-      <h2>Структура package.js: Package.onUse</h2>
+      <h2>package.js: Package.onUse</h2>
       <pre>
         <code><mark class="comment">// This defines your actual package</mark></code>
         <code>Package.onUse(function(api) {</code>
         <code>  <mark class="comment">// Use core Meteor packages from the release specified</mark></code>
         <code>  api.versionsFrom('1.2.1');</code>
-        <code>  <mark class="comment">// Use core Meteor packages from the release specified</mark></code>
-        <code>  api.use('iron:router@1.0.12');</code>
+        <code>  <mark class="comment">// Dependencies</mark></code>
+        <code>  api.use('ecmascript');</code>
+        <code>  api.use(['bundle:namespace', 'bundle:imports']);</code>
+        <code>  api.use('tap:i18n@1.3.0');</code>
+        <code>  api.use('underscore', 'client');</code>
+        <code>  <mark class="comment">// to be continued</mark></code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>package.js: Package.onUse - продолжение</h2>
+      <pre>
+        <code>  <mark class="comment">// Imply</mark></code>
+        <code>  api.imply('iron:router@1.0.12');</code>
+        <code>  <mark class="comment">// Package files</mark></code>
+        <code>  api.addFiles('route.js');</code>
+        <code>  api.addFiles(['fruits.html', 'fruits.js'], 'client');</code>
+        <code>  <mark class="comment">// Package assets</mark></code>
+        <code>  api.addAssets(['img/default-avatar.jpg'], 'client');</code>
+        <code>  <mark class="comment">// Export</mark></code>
+        <code>  api.export('Bundle');</code>
         <code>});</code>
       </pre>
     </section>
 
     <section class="slide">
-      <h2>Структура package.js: Package.onTest</h2>
+      <h2>package.js: Package.onTest</h2>
+      <pre>
+        <code><mark class="comment">/* This defines the tests for the package */</mark></code>
+        <code>Package.onTest(function(api) {</code>
+        <code>  api.use('ecmascript');</code>
+        <code>  <mark class="comment">// Allows you to use the 'tinytest' framework</mark></code>
+        <code>  api.use('tinytest');</code>
+        <code>  <mark class="comment">// Sets up a dependency on this package</mark></code>
+        <code>  api.use('username:packagename');</code>
+        <code>  <mark class="comment">// Specify the source code for the package tests</mark></code>
+        <code>  api.addFiles('packagename-tests.js');</code>
+        <code>});</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>package.js: документация</h2>
+      <a href="http://docs.meteor.com/#/full/packagejs">http://docs.meteor.com/#/full/packagejs</a>
+      <iframe style="width: 100%; height: 75%" src="http://docs.meteor.com/#/full/packagejs"></iframe>
     </section>
 
     <section class="slide">
       <h2>Публикация пакета</h2>
-      <ul>
-        <li>meteor publish</li>
-      </ul>
-      <h3>Ограничения</h3>
-      <ul>
+      <pre>
+        <code>meteor publish</code>
+      </pre>
+      <p>Ограничения</p>
+      <ol>
         <li>Версия обязательна</li>
-        <li>username должен совпадать с аккаунтом разработчика Meteor</li>
-      </ul>
+        <li><strong>username</strong> должен совпадать с аккаунтом разработчика Meteor</li>
+      </ol>
     </section>
 
     <section class="slide">
