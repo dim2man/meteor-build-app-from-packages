@@ -32,8 +32,7 @@
         <code>    template/     <mark class=comment># page templates</mark></code>
         <code>      page1/      <mark class=comment># page1 HTML template and JavaScript</mark></code>
         <code>public/           <mark class=comment># static resources:</mark></code>
-        <code>  fonts/          <mark class=comment># local fonts</mark></code>
-        <code>  img/            <mark class=comment># and images</mark></code>
+        <code>  assets/          <mark class=comment># local fonts and images</mark></code>
       </pre> </section> <section class=slide> <h2>И вот так</h2> <pre>
         <code>common/          <mark class=comment># for the both client and server</mark></code>
         <code>  controller/    <mark class=comment># Iron Router controllers</mark></code>
@@ -44,7 +43,13 @@
         <code>  methods.js     <mark class=comment># remote functions</mark></code>
         <code>  publish.js     <mark class=comment># collection publishing rules</mark></code>
         <code>private/         <mark class=comment># top secret files</mark></code>
-      </pre> </section> <section class=slide> <h2>Очень хорошо! А что дальше?</h2> <p>Внезапно оказывается что надо сделать ещё одно приложение, но которое будет <em>чуть-чуть</em> отличаться от первого.</p> <p class=next>Не проблема! <strong>Copy&amp;Paste</strong> - это орудие настоящих профессионалов!</p> <p class=next>И тут в первом приложении обнаруживается <em>баг</em>, который конечно же легко фиксится.</p> <p class=next>Но оказывается этот <em>баг</em> надо пофиксить и во втором приложении... Неужели опять браться за <strong>орудие</strong>?</p> </section> <section class=slide> <h2>Говорила мне мама</h2> <p style=text-align:center><strong><span style=font-size:3em>D</span>on't <span style=font-size:3em>R</span>epeat <span style=font-size:3em>Y</span>ourself</strong></p> <p>Всё-таки надо было разбить приложение на модули.</p> <p>А что в Meteor является модулем?</p> <p style="text-align:center; font-size: 2em" class=next>Конечно же это package!</p> </section> <section class=slide> <h2>Зачем разбивать приложение на пакеты</h2> <p><strong>Плюсы</strong></p> <ol> <li>Пакет можно использовать в нескольких приложениях</li> <li class=next>Если не хочется использовать магию имён client, server, public, private...</li> <li class=next>Лучше управление зависимостями</li> <li class=next>Изоляция кода</li> <li class=next>Для пакетов легко писать юнит-тесты</li> </ol> <div class=next> <p><strong>Минусы</strong></p> <ol> <li>Надо создавать дескриптор пакета package.js</li> <li>Можно забыть прописать новый файл в package.js и он не будет загружен</li> </ol> </div> </section> <section class=slide> <h2>Пакетная система Meteor</h2> <ol> <li>Изоморфная</li> <li>Может содержать плагины расширяющие build process</li> <li>Весь Meteor это набор packages</li> </ol> <!--<p class="note"></p>--> </section> <section class=slide> <h2>Создание нового пакета</h2> <ul> <li>meteor create --package username:packagename</li> <li>Будет создан каталог packagename и дескриптор пакета package.js</li> <li>username должен совпадать с вашим аккаунтом разработчика на <a href="https://www.meteor.com/">https://www.meteor.com/</a> если вы планируете публиковать пакет в репозиторий <a href="https://atmospherejs.com/">https://atmospherejs.com/</a></li> <li>Если нет - то можно выбрать любое имя</li> </ul> </section> <section class=slide> <h2>Структура package.js: Package.describe</h2> <pre>
+      </pre> </section> <section class=slide> <h2>Очень хорошо! А что дальше?</h2> <p>Внезапно оказывается что надо сделать ещё одно приложение, но которое будет <em>чуть-чуть</em> отличаться от первого.</p> <p class=next>Не проблема! <strong>Copy&amp;Paste</strong> - это орудие настоящих профессионалов!</p> <p class=next>И тут в первом приложении обнаруживается <em>баг</em>, который конечно же легко фиксится.</p> <p class=next>Но оказывается этот <em>баг</em> надо пофиксить и во втором приложении... Неужели опять браться за <strong>орудие</strong>?</p> </section> <section class=slide> <h2 class="shout shrink">DRY</h2> </section> <!-- TODO --> <section class=slide> <h2>Зачем разбивать приложение на пакеты</h2> <p><strong>Плюсы</strong></p> <ol> <li>Пакет можно использовать в нескольких приложениях</li> <li>Если не хочется использовать магию имён client, server, public, private...</li> <li>Лучше управление зависимостями</li> <li>Изоляция кода</li> <li>Для пакетов легко писать юнит-тесты</li> </ol> <p><strong>Минусы</strong></p> <ol> <li>Надо создавать дескриптор пакета package.js</li> <li>Можно забыть прописать новый файл в package.js и он не будет загружен</li> </ol> </section> <!-- TODO --> <section class=slide> <h2>Пакетная система Meteor</h2> <ol> <li>Изоморфная</li> <li>Может содержать плагины расширяющие build process</li> <li>Meteor это набор packages</li> </ol> </section> <section class=slide> <h2>Создание нового пакета</h2> <pre><code><mark>meteor create --package username:packagename</mark></code></pre> <pre>
+        <code>packagename/</code>
+        <code>  package.js</code>
+        <code>  packagename.js</code>
+        <code>  packagename-tests.js</code>
+        <code>  README.md</code>
+      </pre> <p><strong>username</strong> должен совпадать с вашим аккаунтом разработчика на <a href="https://www.meteor.com/">https://www.meteor.com/</a> если вы планируете публиковать пакет в репозиторий <a href="https://atmospherejs.com/">https://atmospherejs.com/</a>. Если нет - то можно выбрать любое имя</p> </section> <section class=slide> <h2>package.js: Package.describe</h2> <pre>
         <code><mark class=comment>// All properties are optional</mark></code>
         <code>Package.describe({</code>
         <code>  <mark class=comment>// Default is package directory name.</mark></code>
@@ -56,15 +61,206 @@
         <code>  <mark class=comment>// Package documentation</mark></code>
         <code>  documentation: 'README.md'</code>
         <code>});</code>
-      </pre> </section> <section class=slide> <h2>Структура package.js: Package.onUse</h2> <pre>
+      </pre> </section> <section class=slide> <h2>package.js: Package.onUse</h2> <pre>
         <code><mark class=comment>// This defines your actual package</mark></code>
         <code>Package.onUse(function(api) {</code>
         <code>  <mark class=comment>// Use core Meteor packages from the release specified</mark></code>
         <code>  api.versionsFrom('1.2.1');</code>
-        <code>  <mark class=comment>// Use core Meteor packages from the release specified</mark></code>
-        <code>  api.use('iron:router@1.0.12');</code>
+        <code>  <mark class=comment>// Dependencies</mark></code>
+        <code>  api.use('ecmascript');</code>
+        <code>  api.use(['bundle:namespace', 'bundle:imports']);</code>
+        <code>  api.use('tap:i18n@1.3.0');</code>
+        <code>  api.use('underscore', 'client');</code>
+        <code>  <mark class=comment>// to be continued</mark></code>
+      </pre> </section> <section class=slide> <h2>package.js: Package.onUse</h2> <pre>
+        <code>  <mark class=comment>// Imply = use for including package or app</mark></code>
+        <code>  api.imply('iron:router@1.0.12');</code>
+        <code>  <mark class=comment>// Package files</mark></code>
+        <code>  api.addFiles('route.js');</code>
+        <code>  api.addFiles(['fruits.html', 'fruits.js'], 'client');</code>
+        <code>  <mark class=comment>// Package assets</mark></code>
+        <code>  api.addAssets(['fonts/bundle.eot', ...</code>
+        <code>    'img/default-avatar.jpg'], 'client');</code>
+        <code>  <mark class=comment>// Export</mark></code>
+        <code>  api.export('Bundle');</code>
         <code>});</code>
-      </pre> </section> <section class=slide> <h2>Структура package.js: Package.onTest</h2> </section> <section class=slide> <h2>Публикация пакета</h2> <ul> <li>meteor publish</li> </ul> <h3>Ограничения</h3> <ul> <li>Версия обязательна</li> <li>username должен совпадать с аккаунтом разработчика Meteor</li> </ul> </section> <section class=slide> <h2>Использование пакетов локально</h2> <ul> <li>PACKAGE_DIRS</li> </ul> </section> <section class=slide> <h2>Пакет пакетов</h2> <ul> <li>группировка</li> <li>управление версиями зависимостей</li> <li>i18n-бандлы</li> </ul> <p class=note><a href=https://github.com/meteor/meteor/blob/devel/packages/meteor-platform/package.js>https://github.com/meteor/meteor/blob/devel/packages/meteor-platform/package.js</a></p> </section> <section class=slide> <h2>Пакет namespace</h2> </section> <section class=slide> <h2>Пакет collections</h2> </section> <section class=slide> <h2>Пакет layout</h2> </section> <section class=slide> <h2>Пакет page</h2> </section> <section class=slide> <h2>Пакет приложения</h2> </section> <section class=slide> <h2>Юнит тесты: tinytest</h2> <p class=note><a href=https://github.com/meteor/meteor/tree/devel/packages/tinytest>https://github.com/meteor/meteor/tree/devel/packages/tinytest</a> </p></section> <section class=slide> <h2>Tinytest.add</h2> </section> <section class=slide> <h2>Tinytest.addAsync</h2> </section> <!--
+      </pre> </section> <section class=slide> <h2>Assets</h2> <p><strong>/code/bundle/layout/icons.css</strong></p> <pre>
+        <code>src:url("<mark class=important>fonts/bundle.eot</mark>");</code>
+        <code>src:url("fonts/bundle.eot?#iefix") format("embedded-opentype"),</code>
+        <code>  url("fonts/bundle.woff") format("woff"),</code>
+        <code>  url("fonts/bundle.ttf") format("truetype"),</code>
+        <code>  url("fonts/bundle.svg#bundle") format("svg");</code>
+      </pre> <p><strong>/code/bundle/layout/layout.html</strong></p> <pre>
+        <code>&lt;img src="<mark class=important>/packages/bundle_layout/img/default-avatar.jpg</mark>"&gt;</code>
+      </pre> </section> <section class=slide> <h2>package.js: документация</h2> <a href=http://docs.meteor.com/#/full/packagejs>http://docs.meteor.com/#/full/packagejs</a> <iframe style="width: 100%; height: 75%" src=http://docs.meteor.com/#/full/packagejs></iframe> </section> <section class=slide> <h2>Публикация пакета</h2> <p><a href="https://atmospherejs.com/">https://atmospherejs.com/</a></p> <pre>
+        <code><mark>meteor publish</mark></code>
+      </pre> <p>Ограничения</p> <ol> <li>Версия обязательна</li> <li><strong>username</strong> должен совпадать с аккаунтом разработчика Meteor</li> </ol> </section> <section class=slide> <h2>Использование пакетов в приложении</h2> <pre>
+        <code><mark>meteor add &lt;package&gt; [package..]</mark></code>
+      </pre> <p>Где Meteor ищет пакеты: <ol> <li>Каталог <code>packages/</code> приложения</li> <li>Переменная среды <code>PACKAGE_DIRS</code></li> <li>Пакеты из Meteor release</li> </ol> </p></section> <section class=slide> <h2>PACKAGE_DIRS</h2> <p>Linux</p> <pre>
+        <code><mark>PACKAGE_DIRS=../bundle:../i18n</mark></code>
+      </pre> <p>Windows</p> <pre>
+        <code><mark>set PACKAGE_DIRS=../bundle:../i18n</mark></code>
+      </pre> </section> <section class=slide> <h2>Приложение состоящее из одних пакетов</h2> <iframe style="width: 100%; height: 75%; border: solid black 1px" src="http://localhost:3010/"></iframe> </section> <section class=slide> <h2>Пакет пакетов</h2> <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.imply([</code>
+        <code>    'iron:router@1.0.12',</code>
+        <code>    'zimme:active-route@2.0.1'</code>
+        <code>  ]);</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет пакетов</h2> <a style=white-space:nowrap href=https://github.com/meteor/meteor/blob/devel/packages/meteor-base/package.js>https://github.com/meteor/meteor/blob/devel/packages/meteor-base/package.js</a> <iframe style="width: 100%; height: 75%" src=https://rawgit.com/meteor/meteor/devel/packages/meteor-base/package.js></iframe> </section> <section class=slide> <h2>Пакет namespace</h2> <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.addFiles('namespace.js');</code>
+        <code>  api.export('Bundle');</code>
+        <code>});</code>
+      </pre> <p><strong>/code/bundle/namespace/namespace.js</strong></p> <pre>
+        <code>Bundle = {};</code>
+      </pre> </section> <section class=slide> <h2>Пакет namespace</h2> <p><strong>/code/bundle/layout/</strong></p> <pre>
+        <code>api.use('bundle:namespace'); <mark class=comment>// package.js</mark></code>
+      </pre> <pre>
+        <code>Bundle.Navigation = new ReactiveVar([]); <mark class=comment>// layout.js</mark></code>
+      </pre> <p><strong>/code/myapp/packages/myapp/</strong></p> <pre>
+        <code>api.use(['bundle:namespace', 'bundle:layout']); <mark class=comment>// package.js</mark></code>
+      </pre> <pre>
+        <code>Bundle.Navigation.set [template: 'NavFruits'] <mark class=comment># myapp.coffee</mark></code>
+      </pre> </section> <section class=slide> <h2>Пакет collections</h2> <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.use(['ecmascript', 'bundle:namespace']);</code>
+        <code>  api.addFiles('collections.js');</code>
+        <code>  api.addFiles('publish.js', 'server');</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет collections</h2> <p><strong>/code/bundle/collections/collections.js</strong></p> <pre>
+        <code>Bundle.Collection = {</code>
+        <code>  Fruits: new Meteor.Collection('fruits'),</code>
+        <code>  Sweets: new Meteor.Collection('sweets')</code>
+        <code>};</code>
+        <code>for(let name in Bundle.Collection) {</code>
+        <code>  Bundle.Collection[name].allow({</code>
+        <code>    <mark class=comment>// set insert, update and remove rules</mark></code>
+        <code>  });</code>
+        <code>}</code>
+      </pre> </section> <section class=slide> <h2>Пакет collections</h2> <p><strong>/code/bundle/collections/publish.js</strong></p> <pre>
+        <code>Meteor.publish('fruits', function() {</code>
+        <code>  <mark class=comment>// TODO apply filter and check user access rights</mark></code>
+        <code>  return Bundle.Collection.Fruits.find();</code>
+        <code>});</code>
+        <code>Meteor.publish('sweets', function() {</code>
+        <code>  <mark class=comment>// TODO apply filter and check user access rights</mark></code>
+        <code>  return Bundle.Collection.Sweets.find();</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет layout</h2> <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.use(['ecmascript', 'templating', 'reactive-var']);</code>
+        <code>  api.use(['bundle:namespace', 'bundle:imports']);</code>
+        <code>  api.addFiles('route-controller.js');</code>
+        <code>  api.addFiles(['icons.css', 'layout.css', </code>
+        <code>    'layout.html', 'layout.js'], 'client');</code>
+        <code>  api.addAssets(['fonts/bundle.eot', 'fonts/bundle.svg',</code>
+        <code>    'fonts/bundle.ttf', 'fonts/bundle.woff', </code>
+        <code>    'img/default-avatar.jpg'], 'client');</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет layout</h2> <p><strong>/code/bundle/layout/layout.html</strong></p> <pre>
+        <code>&lt;template name="Layout"&gt;</code>
+        <code>  &lt;div&gt;</code>
+        <code>    &lt;aside&gt;{{&gt; yield region="navigation"}}&lt;/aside&gt;</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;header&gt;{{&gt; yield region="header"}}&lt;/header&gt;</code>
+        <code>      &lt;main&gt;{{&gt; yield}}&lt;/main&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  &lt;/div&gt;</code>
+        <code>  &lt;footer&gt;&lt;/footer&gt;</code>
+        <code>&lt;/template&gt;</code>
+      </pre> </section> <section class=slide> <h2>Пакет layout</h2> <p><strong>/code/bundle/layout/route-controller.js</strong></p> <pre>
+        <code>Bundle.RouteController = RouteController.extend({</code>
+        <code>  layoutTemplate: 'Layout',</code>
+        <code>  title: '', <mark class=comment>// default title</mark></code>
+        <code>  context: undefined, <mark class=comment>// default context</mark></code>
+        <code>  action: function() {</code>
+        <code>     <mark class=comment>// implementation</mark></code>
+        <code>  }</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет layout</h2> <p><strong>/code/bundle/layout/route-controller.js</strong></p> <pre>
+        <code>  this.render('Navigation', { to: 'navigation',</code>
+        <code>    data: function() { return Bundle.Navigation.get(); }</code>
+        <code>  });</code>
+        <code>  this.render('Header', { to: 'header',</code>
+        <code>    data: this.title</code>
+        <code>  });</code>
+        <code>  this.render(this.lookupTemplate(), {</code>
+        <code>    data: this.context</code>
+        <code>  });</code>
+      </pre> </section> <section class=slide> <h2>Пакет page</h2> <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.use(['ecmascript', 'templating']);</code>
+        <code>  api.use(['bundle:imports', 'bundle:namespace',</code>
+        <code>    'bundle:collections']);</code>
+        <code>  api.addFiles('route.js');</code>
+        <code>  api.addFiles(['fruits.html', 'fruits.js'], 'client');</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет page</h2> <p><strong>/code/bundle/fruits/route.js</strong></p> <pre>
+        <code>Router.route('/fruits', {</code>
+        <code>  controller: Bundle.RouteController.extend({</code>
+        <code>    title: 'Свежие Фрукты',</code>
+        <code>    subscriptions: function() {</code>
+        <code>      return Meteor.subscribe('fruits');</code>
+        <code>    },</code>
+        <code>    context: function() {</code>
+        <code>      return Bundle.Collection.Fruits.find();</code>
+        <code>    }})</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет приложения</h2> <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.use('coffeescript');</code>
+        <code>  api.use(['bundle:imports',</code>
+        <code>    'bundle:namespace',</code>
+        <code>    'bundle:layout',</code>
+        <code>    'bundle:fruits',</code>
+        <code>    'bundle:sweets']);</code>
+        <code>  api.addFiles('myapp.coffee');</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Пакет приложения</h2> <p><strong>/code/myapp/packages/myapp/myapp.coffee</strong></p> <pre>
+        <code><mark class=comment># Default route</mark></code>
+        <code>Router.route '/', -> Router.go 'fruits'</code>
+        <code>if Meteor.isClient</code>
+        <code>  <mark class=comment># Navigation menu</mark></code>
+        <code>  Bundle.Navigation.set [</code>
+        <code>    {template: 'NavFruits'}</code>
+        <code>    {template: 'NavSweets'}</code>
+        <code>  ]</code>
+      </pre> </section> <section class=slide> <h2>package.js: Package.onTest</h2> <pre>
+        <code><mark class=comment>/* This defines the tests for the package */</mark></code>
+        <code>Package.onTest(function(api) {</code>
+        <code>  api.use('ecmascript');</code>
+        <code>  <mark class=comment>// Allows you to use the 'tinytest' framework</mark></code>
+        <code>  api.use('tinytest');</code>
+        <code>  <mark class=comment>// Sets up a dependency on this package</mark></code>
+        <code>  api.use('username:packagename');</code>
+        <code>  <mark class=comment>// Specify the source code for the package tests</mark></code>
+        <code>  api.addFiles('packagename-tests.js');</code>
+        <code>});</code>
+      </pre> <p class=note><a href=https://github.com/meteor/meteor/tree/devel/packages/tinytest>https://github.com/meteor/meteor/tree/devel/packages/tinytest</a> </p></section> <section class=slide> <h2>Tinytest.add</h2> <p><strong>/code/bundle/namespace/namespace-tests.js</strong></p> <pre>
+        <code>Tinytest.add('namespace', function (test) {</code>
+        <code>  test.instanceOf(Bundle, Object);</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Tinytest.addAsync</h2> <p><strong>/code/bundle/collections/collections-tests.js</strong></p> <pre>
+        <code>Tinytest.addAsync('collections - fruits', (test, next) => {</code>
+        <code>  Meteor.subscribe('fruits', {</code>
+        <code>    onError: (e) => {</code>
+        <code>      test.fail(e);</code>
+        <code>      next();</code>
+        <code>    }, onReady: () => {</code>
+        <code>      test.ok();</code>
+        <code>      next();</code>
+        <code>    }});</code>
+        <code>});</code>
+      </pre> </section> <section class=slide> <h2>Запуск юнит тестов</h2> <pre>
+        <code><mark>meteor test-packages</mark></code>
+      </pre> <iframe style="width: 100%; height: 70%; border: solid black 1px" src="http://localhost:3020/"></iframe> </section> <section class=slide> <h2 class="shout shrink">Вопросы?</h2> </section> <!--
     <section class="slide">
       <h2>Plain text on your slides</h2>
       <p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
