@@ -10,7 +10,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use('coffeescript');
-  api.use(['bundle:imports', 'bundle:namespace', 'bundle:layout', 'bundle:fruits', 'bundle:vegetables']);
+  api.use(['bundle:imports', 'bundle:namespace', 'bundle:layout', 'bundle:fruits', 'bundle:sweets']);
   api.addFiles('myapp.coffee');
 });
 

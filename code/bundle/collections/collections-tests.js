@@ -1,5 +1,25 @@
-// Write your tests here!
-// Here is an example.
-Tinytest.add('example', function (test) {
-  test.equal(true, true);
+Tinytest.addAsync('collections - fruits', (test, next) => {
+  Meteor.subscribe('fruits', {
+    onError: (e) => {
+      test.fail(e);
+      next();
+    },
+    onReady: () => {
+      test.ok();
+      next();
+    }
+  });
+});
+
+Tinytest.addAsync('collections - sweets', (test, next) => {
+  Meteor.subscribe('sweets', {
+    onError: (e) => {
+      test.fail(e);
+      next();
+    },
+    onReady: () => {
+      test.ok();
+      next();
+    }
+  });
 });

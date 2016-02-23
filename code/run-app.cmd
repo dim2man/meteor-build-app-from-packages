@@ -1,2 +1,2 @@
 call ..\env.cmd
-meteor
+meteor -p 3010

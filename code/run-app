@@ -1,2 +1,2 @@
 . ../env
-meteor
+meteor -p 3010

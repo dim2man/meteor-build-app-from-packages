@@ -1,0 +1,12 @@
+<template name="Sweets">
+  <ul class="list">
+    <li><span class="icon-plus"></span><input value="" placeholder="Добавьте вкусняшку"></li>
+    {{#each .}}
+    <li><span class="icon-remove"></span>{{name}}&#8203;</li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="NavSweets">
+<a href="{{pathFor 'sweets'}}" class="icon-android {{isActiveRoute regex='sweets'}}">Сладости</a>
+</template>

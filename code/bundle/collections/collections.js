@@ -1,7 +1,7 @@
 // Write your package code here!
 Bundle.Collection = {
   Fruits: new Meteor.Collection('fruits'),
-  Vegetables: new Meteor.Collection('vegetables')
+  Sweets: new Meteor.Collection('sweets')
 };
 
 // set access rules

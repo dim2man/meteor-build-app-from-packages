@@ -1,2 +1,2 @@
 . ../env
-meteor test-packages
+meteor test-packages -p 3020

@@ -3,7 +3,7 @@ Meteor.publish('fruits', function() {
   return Bundle.Collection.Fruits.find();
 });
 
-Meteor.publish('vegetables', function() {
+Meteor.publish('sweets', function() {
   // TODO apply filter and check user access rights
-  return Bundle.Collection.Vegetables.find();
+  return Bundle.Collection.Sweets.find();
 });

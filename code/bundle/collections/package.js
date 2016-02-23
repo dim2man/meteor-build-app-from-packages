@@ -21,5 +21,5 @@ Package.onTest(function(api) {
   api.use(['ecmascript', 'bundle:namespace']);
   api.use('tinytest');
   api.use('bundle:collections');
-  api.addFiles('collections-tests.js');
+  api.addFiles('collections-tests.js', 'client');
 });

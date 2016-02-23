@@ -10,7 +10,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use(['ecmascript', 'templating']);
-  api.use(['bundle:imports', 'bundle:namespace', 'bundle:collections', 'bundle:layout']);
+  api.use(['bundle:imports', 'bundle:namespace', 'bundle:collections']);
   api.addFiles('route.js');
   api.addFiles(['fruits.html', 'fruits.js'], 'client');
 });

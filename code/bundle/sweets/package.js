@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'bundle:vegetables',
+  name: 'bundle:sweets',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -10,8 +10,8 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use(['ecmascript', 'templating']);
-  api.use(['bundle:imports', 'bundle:namespace', 'bundle:layout']);
+  api.use(['bundle:imports', 'bundle:namespace']);
   api.addFiles('route.js');
-  api.addFiles(['vegetables.html', 'vegetables.js'], 'client');
+  api.addFiles(['sweets.html', 'sweets.js'], 'client');
 });
 
