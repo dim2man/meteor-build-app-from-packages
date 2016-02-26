@@ -70,7 +70,7 @@
     <section class="slide">
       <h2>Если можно так</h2>
       <pre>
-        <code>meteor create simple-todos</code>
+        <code><mark>meteor create simple-todos</mark></code>
       </pre>
       <p>И весь код разместить в 3-х файлах</p>
       <pre>
@@ -98,7 +98,7 @@
     </section>
 
     <section class="slide">
-      <h2>И вот так</h2>
+      <h2>.. и так</h2>
       <pre>
         <code>common/          <mark class="comment"># for the both client and server</mark></code>
         <code>  controller/    <mark class="comment"># Iron Router controllers</mark></code>
@@ -112,6 +112,7 @@
       </pre>
     </section>
 
+    <!--
     <section class="slide">
       <h2>Очень хорошо! А что дальше?</h2>
       <p>Внезапно оказывается что надо сделать ещё одно приложение, но которое будет <em>чуть-чуть</em> отличаться от первого.</p>
@@ -123,17 +124,17 @@
     <section class="slide">
       <h2 class="shout shrink">DRY</h2>
     </section>
+    -->
 
-    <!-- TODO -->
     <section class="slide">
       <h2>Зачем разбивать приложение на пакеты</h2>
       <p><strong>Плюсы</strong></p>
       <ol>
         <li>Пакет можно использовать в нескольких приложениях</li>
-        <li>Если не хочется использовать магию имён client, server, public, private...</li>
-        <li>Лучше управление зависимостями</li>
-        <li>Изоляция кода</li>
-        <li>Для пакетов легко писать юнит-тесты</li>
+        <li>Можно забыть магию имён client, server, public, private и т.д.</li>
+        <li>Лучшее управление зависимостями</li>
+        <li>Изоляция кода и явный экспорт переменных</li>
+        <li>Легко запускать юнит-тесты</li>
       </ol>
       <p><strong>Минусы</strong></p>
       <ol>
@@ -142,13 +143,13 @@
       </ol>
     </section>
 
-    <!-- TODO -->
     <section class="slide">
       <h2>Пакетная система Meteor</h2>
       <ol>
         <li>Изоморфная</li>
-        <li>Может содержать плагины расширяющие build process</li>
-        <li>Meteor это набор packages</li>
+        <li>Система сборки в комплекте</li>
+        <li>Система сборки расширяется плагинами</li>
+        <li>Платформа Meteor это тоже набор пакетов</li>
       </ol>
     </section>
 
@@ -162,7 +163,6 @@
         <code>  packagename-tests.js</code>
         <code>  README.md</code>
       </pre>
-      <p><strong>username</strong> должен совпадать с вашим аккаунтом разработчика на <a href="https://www.meteor.com/">https://www.meteor.com/</a> если вы планируете публиковать пакет в репозиторий <a href="https://atmospherejs.com/">https://atmospherejs.com/</a>. Если нет - то можно выбрать любое имя</p>
     </section>
 
     <section class="slide">
@@ -216,6 +216,50 @@
     </section>
 
     <section class="slide">
+      <h2>Imply</h2>
+      <div style="position:relative;width: 100%;height: 80%;">
+        <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" style="margin: auto; display: block; transform: scale(1.5);">
+         <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+         <defs>
+          <marker refY="43" refX="60" markerHeight="8.6" markerWidth="12" viewBox="0 0 120 86" se_type="textmarker" orient="0" markerUnits="strokeWidth" id="se_marker_mid_svg_8">
+           <rect stroke-width="0" fill="#ffffff" height="86" width="120" y="0" x="0"/>
+           <text fill="#0000ff" xml:space="preserve" text-anchor="left" font-family="Sans-serif" font-size="75" stroke-width="0" y="63.5" x="1">use</text>
+          </marker>
+          <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_8">
+           <path stroke-width="10" stroke="#0000ff" fill="#0000ff" d="m100,50l-100,40l30,-40l-30,-40z"/>
+          </marker>
+          <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_9">
+           <path stroke-width="10" stroke="#0000ff" fill="#0000ff" d="m100,50l-100,40l30,-40l-30,-40z"/>
+          </marker>
+          <marker refY="44" refX="108.25" markerHeight="8.6" markerWidth="21.45" viewBox="0 0 214.5 86" se_type="textmarker" orient="0" markerUnits="strokeWidth" id="se_marker_mid_svg_9">
+           <rect stroke-width="0" fill="#ffffff" height="86" width="214.5" y="0" x="0"/>
+           <text fill="#0000ff" xml:space="preserve" text-anchor="left" font-family="Sans-serif" font-size="75" stroke-width="0" y="63.5" x="1"> imply </text>
+          </marker>
+          <marker refY="43" refX="60" markerHeight="8.6" markerWidth="12" viewBox="0 0 120 86" se_type="textmarker" orient="0" markerUnits="strokeWidth" id="se_marker_mid_svg_10">
+           <rect stroke-width="0" fill="#ffffff" height="86" width="120" y="0" x="0"/>
+           <text fill="#ff0000" xml:space="preserve" text-anchor="left" font-family="Sans-serif" font-size="75" stroke-width="0" y="63.5" x="1">use</text>
+          </marker>
+          <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_10">
+           <path stroke-width="10" stroke="#ff0000" fill="#ff0000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+          </marker>
+         </defs>
+         <g  viewBox="0 0 640 480">
+          <title>Layer 1</title>
+          <ellipse ry="50" rx="75" id="svg_1" cy="140" cx="320" stroke-width="2" stroke="#191919" fill="#e5e5e5"/>
+          <text xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="24" id="svg_3" y="148" x="320" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#191919" fill="#000000">Пакет A</text>
+          <ellipse id="svg_4" ry="50" rx="75" cy="310" cx="180" stroke-width="2" stroke="#191919" fill="#e5e5e5"/>
+          <ellipse id="svg_5" ry="50" rx="75" cy="310" cx="460" stroke-width="2" stroke="#191919" fill="#e5e5e5"/>
+          <text style="cursor: move;" id="svg_6" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="24" y="318" x="180" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#191919" fill="#000000">Пакет B</text>
+          <text style="cursor: move;" id="svg_7" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="24" y="318" x="460" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#191919" fill="#000000">Пакет C</text>
+          <polyline marker-end="url(#se_marker_end_svg_8)" id="svg_8" marker-mid="url(#se_marker_mid_svg_8)" fill="none" stroke-width="2" stroke="#0000ff" points="274,181 250,223 226,265 "/>
+          <polyline marker-mid="url(#se_marker_mid_svg_9)" id="svg_9" marker-end="url(#se_marker_end_svg_9)" fill="none" stroke-width="2" stroke="#0000ff" points="255,310 320,310 380,310 "/>
+          <polyline class="next" id="svg_10" marker-end="url(#se_marker_end_svg_10)" marker-mid="url(#se_marker_mid_svg_10)" fill="none" stroke-width="2" stroke="#ff0000" points="366,181 390,223 414,265 "/>
+         </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="slide">
       <h2>Assets</h2>
       <p><strong>/code/bundle/layout/icons.css</strong></p>
       <pre>
@@ -234,7 +278,7 @@
     <section class="slide">
       <h2>package.js: документация</h2>
       <a href="http://docs.meteor.com/#/full/packagejs">http://docs.meteor.com/#/full/packagejs</a>
-      <iframe style="width: 100%; height: 75%" src="http://docs.meteor.com/#/full/packagejs"></iframe>
+      <!-- <iframe style="width: 100%; height: 75%" src="http://docs.meteor.com/#/full/packagejs"></iframe> -->
     </section>
 
     <section class="slide">
@@ -260,6 +304,7 @@
         <li>Каталог <code>packages/</code> приложения</li>
         <li>Переменная среды <code>PACKAGE_DIRS</code></li>
         <li>Пакеты из Meteor release</li>
+        <li><a href="https://atmospherejs.com/">https://atmospherejs.com/</a></li>
       </ol>
     </section>
 
@@ -281,6 +326,52 @@
     </section>
 
     <section class="slide">
+      <h2>Создание</h2>
+      <pre>
+        <code><mark>meteor create myapp</mark></code>
+        <code><mark>cd myapp</mark></code>
+        <code><mark>del myapp.*</mark></code>
+        <code><mark>meteor remove autopublish</mark></code>
+        <code><mark>mkdir packages</mark></code>
+        <code><mark>cd packages</mark></code>
+        <code><mark>meteor create --package myapp</mark></code>
+        <code><mark>cd ..</mark></code>
+        <code><mark>meteor add myapp</mark></code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет приложения</h2>
+      <pre>
+        <code>Package.onUse(function(api) {</code>
+        <code>  api.versionsFrom('1.2.1');</code>
+        <code>  api.use('coffeescript');</code>
+        <code>  api.use(['bundle:imports',</code>
+        <code>    'bundle:namespace',</code>
+        <code>    'bundle:layout',</code>
+        <code>    'bundle:fruits',</code>
+        <code>    'bundle:sweets']);</code>
+        <code>  api.addFiles('myapp.coffee');</code>
+        <code>});</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Пакет приложения</h2>
+      <p><strong>/code/myapp/packages/myapp/myapp.coffee</strong></p>
+      <pre>
+        <code><mark class="comment"># Default route</mark></code>
+        <code>Router.route '/', -> Router.go 'fruits'</code>
+        <code>if Meteor.isClient</code>
+        <code>  <mark class="comment"># Navigation menu</mark></code>
+        <code>  Bundle.Navigation.set [</code>
+        <code>    {template: 'NavFruits'}</code>
+        <code>    {template: 'NavSweets'}</code>
+        <code>  ]</code>
+      </pre>
+    </section>
+
+    <section class="slide">
       <h2>Пакет пакетов</h2>
       <pre>
         <code>Package.onUse(function(api) {</code>
@@ -296,7 +387,9 @@
     <section class="slide">
       <h2>Пакет пакетов</h2>
       <a style="white-space:nowrap" href="https://github.com/meteor/meteor/blob/devel/packages/meteor-base/package.js">https://github.com/meteor/meteor/blob/devel/packages/meteor-base/package.js</a>
-      <iframe style="width: 100%; height: 75%" src="https://rawgit.com/meteor/meteor/devel/packages/meteor-base/package.js"></iframe>
+      <div style="width:100%; height: 75%; overflow-x: hidden; overflow-y: auto;">
+        <iframe style="width: 100%; height: 100%; transform: scale(1.4); transform-origin: 0 0;" src="https://rawgit.com/meteor/meteor/devel/packages/meteor-base/package.js"></iframe>
+      </div>
     </section>
 
     <section class="slide">
@@ -472,33 +565,15 @@
     </section>
 
     <section class="slide">
-      <h2>Пакет приложения</h2>
+      <h2>Запуск</h2>
       <pre>
-        <code>Package.onUse(function(api) {</code>
-        <code>  api.versionsFrom('1.2.1');</code>
-        <code>  api.use('coffeescript');</code>
-        <code>  api.use(['bundle:imports',</code>
-        <code>    'bundle:namespace',</code>
-        <code>    'bundle:layout',</code>
-        <code>    'bundle:fruits',</code>
-        <code>    'bundle:sweets']);</code>
-        <code>  api.addFiles('myapp.coffee');</code>
-        <code>});</code>
+        <code><mark>set PACKAGE_DIRS=../bundle</mark></code>
+        <code><mark>meteor</mark></code>
       </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Пакет приложения</h2>
-      <p><strong>/code/myapp/packages/myapp/myapp.coffee</strong></p>
+      <h2>Сборка бандла</h2>
       <pre>
-        <code><mark class="comment"># Default route</mark></code>
-        <code>Router.route '/', -> Router.go 'fruits'</code>
-        <code>if Meteor.isClient</code>
-        <code>  <mark class="comment"># Navigation menu</mark></code>
-        <code>  Bundle.Navigation.set [</code>
-        <code>    {template: 'NavFruits'}</code>
-        <code>    {template: 'NavSweets'}</code>
-        <code>  ]</code>
+        <code><mark>set PACKAGE_DIRS=../bundle</mark></code>
+        <code><mark>meteor build ..\ --architecture os.linux.x86_64</mark></code>
       </pre>
     </section>
 
